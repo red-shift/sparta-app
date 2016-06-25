@@ -215,7 +215,7 @@ class AddFighterView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
     form_class = FighterForm
     template_name = 'sparta/forms/add-fighter.html'
     success_message = 'Fighter was added successfully'
-    success_url = reverse_lazy('sparta:manage-fighters')
+    success_url = reverse_lazy('sparta:add-fighter')
 
 
 class UpdateFighterView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
