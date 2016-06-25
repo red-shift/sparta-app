@@ -23,7 +23,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '+7u0%@at###u-7b^8hth)g!0g*e#3457^wt8olymfxkz7vf9y!'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = []
 
@@ -80,9 +80,9 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'mass$sparta',
-        'USER': 'mass',
-        'PASSWORD': '0WL3mx?^',
-        'HOST': 'mass.mysql.pythonanywhere.com',
+        'USER': 'root',
+        'PASSWORD': 'b7a8394ac',
+        'HOST': 'localhost',
         # Prevent foreign key constraint failure for InnoDB Engine
         'OPTIONS': {
             'init_command': "SET foreign_key_checks = 0;"  #
