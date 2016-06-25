@@ -41,7 +41,7 @@ class IndexView(View):
     template_name = 'sparta/public/index.html'
 
     def get(self, request):
-        self.reset_session_votes(request)
+        #self.reset_session_votes(request)
         events = Event.objects.all()
         c = {
             'events': events,
