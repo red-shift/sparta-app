@@ -30,10 +30,11 @@ def find_fighter_match_relationship(matches, fighters):
     # Iterate through fighters and matches to see if a match has a fighter's id
     for f in fighters:
         for m in matches:
-            if m.red_corner_id == f.id or m.blue_corner_id == f.id:
-                continue
-            else:
-                fighters = fighters.exclude(pk=f.id)
+            pass
+        if m.red_corner_id == f.id or m.blue_corner_id == f.id:
+            pass
+        else:
+            fighters = fighters.exclude(id=f.id)
     return fighters
 
 
