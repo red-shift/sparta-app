@@ -1,0 +1,111 @@
+#profiles-form p label {
+    width: 110px;
+}
+
+#profiles-form p input[type="file"] {
+    display: inline-block
+}
+
+#account-form p label  {
+    width: 125px;
+}
+
+
+#change-password p label  {
+    width: 125px;
+}
+
+#id_password {
+    margin-bottom: 25px;
+}
+
+#incident-form p label  {
+    width: 105px;
+}
+
+#discipline-form p label  {
+    width: 55px;
+}
+
+#pto-form p label  {
+    width: 75px;
+}
+
+#course-taken-form p label {
+    width: 115px;
+}
+
+#bg-check-form p label {
+    width: 115px;
+}
+
+#document-form p label {
+    width: 70px;
+}
+
+#document-form p input[type="file"] {
+    display: inline-block
+}
+
+
+#excel-form p input[type="file"] {
+    display: inline-block
+}
+
+#profile-search, #course-search, #training-search {
+    margin-bottom: 20px;
+}
+
+#page-buttons {
+    margin-bottom:25px;
+}
+
+#timeoff-sort {
+    margin-top: 25px;
+}
+
+.helptext {
+    color: red;
+    font-size: .7em;
+}
+
+.bigger-font {
+    font-size:1.5em;
+    color: black;
+}
+
+p.tiny-font {
+    font-size: .7em
+}
+
+ul {
+    padding-left: 0;
+    list-style: none;
+    line-height: 30px;
+}
+
+.img-pad-5 {
+    padding-bottom: 5px;
+}
+
+.add-top-margin {
+    margin-top:25px
+}
+
+.light-gry-bg {
+    padding-top: 10px;
+    background-color: #f8f8f8;
+    border-radius: 3px;
+    border: 1px solid #e7e7e7;
+}
+
+.errorlist {
+    color: red;
+    display: inline-block;
+}
+
+.no-data {
+    text-align: center;
+    padding: 20px;
+    font-size: 1.3em;
+}

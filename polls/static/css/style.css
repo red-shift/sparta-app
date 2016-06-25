@@ -1,0 +1,41 @@
+#event-form input[type="file"],
+#fighter-form input[type="file"],
+#match-form input[type="file"] {
+    display: inline-block;
+}
+
+#event-form p label {
+    width: 85px;
+}
+
+#fighter-form p label {
+    width: 85px;
+}
+
+#match-form p label {
+    width: 85px;
+}
+
+
+.pad-btm-25 {
+    margin-bottom: 25px;
+}
+
+.orange-font {
+    color: #e65c00;
+}
+
+.red-font {
+    color: red;
+}
+
+
+.green-font {
+    color: green;
+}
+
+.errorlist {
+    list-style:none;
+    color: red;
+    padding: 0;
+}

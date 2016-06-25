@@ -1,0 +1,36 @@
+{% extends 'sparta/sitebase/base-public.html' %}
+
+{% block title %}Vote for Match | {{ block.super }}{% endblock title %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-lg-12">
+            <h2>Vote for Performance of the Day - {{ event.name }}</h2>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-12">
+            {% include 'sparta/includes/messages-display.html' %}
+
+            {% if request.session.pvote != event.id %}
+                {% if fighters %}
+                    <form action="" method="post">
+                    {% csrf_token %}
+                    {% for fighter in fighters %}
+                        <input type="radio" name="vote" id="fighter{{ forloop.counter }}" value="{{ fighter.id }}" />
+                        <label for="fighter{{ forloop.counter }}">
+                            {{ fighter.first_name }}&nbsp;{{ fighter.last_name }}
+                        </label><br />
+                    {% endfor %}
+                    <input type="submit" class="btn btn-warning" value="Vote" />
+                    </form>
+                {% else %}
+                    <p class="no-data">No fighters are open </p>
+                {% endif %}
+            {% else %}
+                <p class="no-data">You have already voted! Thank you for your participation. </p>
+            {% endif %}
+        </div>
+    </div>
+{% endblock content %}

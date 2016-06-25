@@ -1,0 +1,69 @@
+{% extends 'sparta/sitebase/base-admin.html' %}
+
+{% block title %}Manage Matches | {{ block.super }}{% endblock title %}
+
+{% block header %}Manage Matches:{% endblock header %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-lg-6">
+            {% if matches %}
+            <div class="table-responsive">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>Event</th>
+                            <th>Match</th>
+                            <th>Votes</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    {% for match in matches %}
+                        <tr>
+                            <td>{{ match.event }}</td>
+                            <td>
+                                {{ match.red_corner.first_name }}&nbsp;{{ match.red_corner.last_name }} vs
+                                {{ match.blue_corner.first_name }}&nbsp;{{ match.blue_corner.last_name }}</td>
+                            </td>
+                            <td>
+                                {{ match.votes }}
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            {% else %}
+            <p>No Matches have been added. Please click <strong>Add Match</strong> to get started.</p>
+            {% endif %}
+        </div>
+
+
+        <div class="col-lg-6">
+            {% if fighters %}
+            <div class="table-responsive">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>Fighter</th>
+                            <th>Gym</th>
+                            <th>Votes</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    {% for fighter in fighters %}
+                        <tr>
+                            <td>{{ fighter.first_name }}&nbsp;{{ fighter.last_name }}</td>
+                            <td>{{ fighter.gym }}</td>
+                            <td>{{ fighter.votes }}</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            {% else %}
+            <p>No fighters have been added</p>
+            {% endif %}
+        </div>
+    </div>
+{% endblock content%}

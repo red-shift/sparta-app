@@ -1,0 +1,65 @@
+{% extends 'sparta/sitebase/base-admin.html' %}
+
+{% block title %}Manage Matches | {{ block.super }}{% endblock title %}
+
+{% block header %}Manage Matches:{% endblock header %}
+
+{% block content %}
+    <div class="row pad-btm-25">
+        <div class="col-lg-12">
+            <ul class="nav nav-pills">
+                <li role="presentation" class="active"><a href="{% url 'sparta:add-match' %}">Add Match</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-12">
+            {% if matches %}
+            <div class="table-responsive">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Event</th>
+                            <th>Red Corner</th>
+                            <th>Versus</th>
+                            <th>Blue Corner</th>
+                            <th>Votes</th>
+                            <th colspan="2">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    {% for match in matches %}
+                        <tr>
+                            <td>{{ match.event }}</td>
+                            <td>{{ match.red_corner.first_name }}&nbsp;{{ match.red_corner.last_name }}</td>
+                            <td>vs</td>
+                            <td>{{ match.blue_corner.first_name }}&nbsp;{{ match.blue_corner.last_name }}</td>
+                            <td>{{ match.votes }}</td>
+                            <td>
+                                <a href="{% url 'sparta:update-match' match.id %}">
+                                    <button class="btn btn-default btn-sm">
+                                        <span class="glyphicon glyphicon-edit"></span>
+                                    </button>
+                                </a>
+                            </td>
+                            <td>
+                                <form action="{% url 'sparta:delete-match' match.id %}" method="post">
+                                    {% csrf_token %}
+                                    <input type="hidden" name="event-id" value="{{ match.id }}" />
+                                    <button type="submit" class="btn btn-default btn-sm" onclick="return confirm('Are you sure?');">
+                                        <span class="glyphicon glyphicon-trash "></span>
+                                    </button>
+                                </form>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            {% else %}
+            <p>No Matches have been added. Please click <strong>Add Match</strong> to get started.</p>
+            {% endif %}
+        </div>
+    </div>
+{% endblock content%}

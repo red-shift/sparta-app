@@ -1,0 +1,24 @@
+{% extends 'sparta/sitebase/base-admin.html' %}
+
+{% block title %}Update Match | {{ block.super }}{% endblock title %}
+
+{% block header %}Update Match:{% endblock header %}
+
+{% block content %}
+    <div class="row pad-btm-25">
+        <div class="col-lg-12">
+            <ul class="nav nav-pills">
+                <li role="presentation" class="active"><a href="{% url 'sparta:manage-fighters' %}">Back</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-12">
+            <form id="match-form" method="post" action="">{% csrf_token %}
+                {{ form.as_p }}
+                <input type="submit" class="btn btn-warning" value="Update" />
+            </form>
+        </div>
+    </div>
+{% endblock content %}

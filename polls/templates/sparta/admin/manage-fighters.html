@@ -1,0 +1,73 @@
+{% extends 'sparta/sitebase/base-admin.html' %}
+
+{% block title %}Manage Fighters | {{ block.super }}{% endblock title %}
+
+{% block header %}Manage Fighters:{% endblock header %}
+
+{% block content %}
+    <div class="row pad-btm-25">
+        <div class="col-lg-12">
+            <ul class="nav nav-pills">
+                <li role="presentation" class="active"><a href="{% url 'sparta:add-fighter' %}">Add Fighter</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-12">
+            {% if fighters %}
+            <div class="table-responsive">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Image</th>
+                            <th>Firstname</th>
+                            <th>Lastname</th>
+                            <th>Weight</th>
+                            <th>Gym</th>
+                            <th>Event</th>
+                            <th>Votes</th>
+                            <th colspan="2">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    {% for fighter in fighters %}
+                        <tr>
+                            <td>
+                            {% if fighter.image %}
+                                <img src="{{ fighter.image.url }}" width="175" height="175" class="img-responsive img-pad-5" />
+                            {% endif %}
+                            </td>
+                            <td>{{ fighter.first_name }}</td>
+                            <td>{{ fighter.last_name }}</td>
+                            <td>{{ fighter.weight }}</td>
+                            <td>{{ fighter.gym }}</td>
+                            <td>{{ fighter.event.name }}</td>
+                            <td>{{ fighter.votes }}</td>
+                            <td>
+                                <a href="{% url 'sparta:update-fighter' fighter.id %}">
+                                    <button class="btn btn-default btn-sm">
+                                        <span class="glyphicon glyphicon-edit"></span>
+                                    </button>
+                                </a>
+                            </td>
+                            <td>
+                                <form action="{% url 'sparta:delete-fighter' fighter.id %}" method="post">
+                                    {% csrf_token %}
+                                    <input type="hidden" name="event-id" value="{{ fighter.id }}" />
+                                    <button type="submit" class="btn btn-default btn-sm" onclick="return confirm('Are you sure?');">
+                                        <span class="glyphicon glyphicon-trash "></span>
+                                    </button>
+                                </form>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            {% else %}
+            <p>No fighters have been added</p>
+            {% endif %}
+        </div>
+    </div>
+{% endblock content%}

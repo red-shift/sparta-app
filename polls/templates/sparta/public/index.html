@@ -1,0 +1,59 @@
+{% extends 'sparta/sitebase/base-public.html' %}
+
+{% block title %} Home | {{ block.super }}{% endblock title%}
+
+{% block content %}
+    <div class="row">
+        <div class="col-lg-12">
+          <h2>Upcoming Events</h2>
+            {% if events %}
+            <div class="table-responsive">
+                <table class="table table-condensed">
+                    <thead>
+                        <tr>
+                            <th>Event</th>
+                            <th>Poll Status</th>
+                            <th>Count Down</th>
+                            <th>Fight of the Day</th>
+                            <th>Performance of the Day</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for event in events %}
+                        <tr>
+                            <td>{{ event.name }}</td>
+                            <td>
+                                {% if event.poll_status = 'Closed' %}
+                                    <strong class="red-font">
+                                {% else %}
+                                    <strong class="green-font">
+                                {% endif %}
+                                {{ event.poll_status }}
+                                </strong>
+                            </td>
+                            <td>{{ event.date|timeuntil }}</td>
+                            <td>
+                                {% if event.poll_status == 'Open' %}
+                                <p><a class="btn btn-warning" href="{% url 'sparta:fight-index' event.id %}" role="button">Vote! &raquo;</a></p>
+                                {% else %}
+                                    <p>Polls are not open</p>
+                                {% endif %}
+                            </td>
+                            <td>
+                                {% if event.poll_status == 'Open' %}
+                                <p><a class="btn btn-warning" href="{% url 'sparta:performance-index' event.id %}" role="button">Vote! &raquo;</a></p>
+                                {% else %}
+                                    <p>Polls are not open</p>
+                                {% endif %}
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            {% else %}
+                <p>No events have been added</p>
+            {% endif %}
+        </div>
+    </div>
+{% endblock content %}

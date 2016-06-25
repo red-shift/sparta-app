@@ -1,0 +1,59 @@
+{% extends 'sparta/sitebase/base-admin.html' %}
+
+{% block title %}Manage Events | {{ block.super }}{% endblock title %}
+
+{% block content %}
+    <div class="row pad-btm-25">
+        <div class="col-lg-12">
+            <ul class="nav nav-pills">
+                <li role="presentation" class="active"><a href="{% url 'sparta:add-event' %}">Add Event</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-12">
+            {% if events %}
+            <div class="table-responsive">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Event</th>
+                            <th>Status</th>
+                            <th>Date</th>
+                            <th colspan="2">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    {% for event in events %}
+                        <tr>
+                            <td>{{ event.name }}</td>
+                            <td>{{ event.poll_status }}</td>
+                            <td>{{ event.date|timeuntil }}</td>
+                            <td>
+                                <a href="{% url 'sparta:update-event' event.id %}">
+                                    <button class="btn btn-default btn-sm">
+                                        <span class="glyphicon glyphicon-edit"></span>
+                                    </button>
+                                </a>
+                            </td>
+                            <td>
+                                <form action="{% url 'sparta:delete-event' event.id %}" method="post">
+                                    {% csrf_token %}
+                                    <input type="hidden" name="event-id" value="{{ event.id }}" />
+                                    <button type="submit" class="btn btn-default btn-sm" onclick="return confirm('Are you sure?');">
+                                        <span class="glyphicon glyphicon-trash "></span>
+                                    </button>
+                                </form>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            {% else %}
+            <p>No events have been added</p>
+            {% endif %}
+        </div>
+    </div>
+{% endblock content%}

@@ -1,0 +1,37 @@
+{% extends 'sparta/sitebase/base-public.html' %}
+
+{% block title %}Vote for Match | {{ block.super }}{% endblock title %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-lg-12">
+            <h2>Vote for Fight of the Day - {{ event.name }}</h2>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-12">
+            {% include 'sparta/includes/messages-display.html' %}
+
+            {% if request.session.fvote != event.id %}
+                {% if matches %}
+                    <form action="" method="post">
+                    {% csrf_token %}
+                    {% for match in matches %}
+                        <input type="radio" name="vote" id="match{{ forloop.counter }}" value="{{ match.id }}" />
+                        <label for="match{{ forloop.counter }}">
+                            {{ match.red_corner.first_name }}&nbsp;{{ match.red_corner.last_name }} vs.
+                            {{ match.blue_corner.first_name }}&nbsp;{{ match.blue_corner.last_name }}
+                        </label><br />
+                    {% endfor %}
+                    <input type="submit" class="btn btn-warning" value="Vote" />
+                    </form>
+                {% else %}
+                    <p class="no-data">No matches are open </p>
+                {% endif %}
+            {% else %}
+                <p class="no-data">You have already voted for this half! Thank you for your participation. </p>
+            {% endif %}
+        </div>
+    </div>
+{% endblock content %}

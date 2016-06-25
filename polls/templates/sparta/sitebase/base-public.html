@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html>
+<head>
+    <title>{% block title %}This Is SPARta{% endblock title %}</title>
+
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" type="text/css" href="{% static 'bootstrap3/css/bootstrap.min.css' %}" />
+
+    <!-- Custom styles for this template -->
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}" />
+</head>
+<body>
+
+<nav class="navbar navbar-inverse">
+    <div class="container">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="{% url 'sparta:index' %}"><img alt="This Is SPARta" src="..."></a>
+            </div>
+            <p class="navbar-text navbar-right"><a href="{% url 'sparta:sparta-admin' %}" class="navbar-link">Admin</a></p>
+        </div>
+    </div>
+</nav>
+
+<div class="jumbotron">
+    <div class="container">
+        <h1><span class="orange-font">SPAR</span>ta Polling</h1>
+    </div>
+</div>
+
+<div class="container">
+    {% block content %}
+    {% endblock content %}
+</div>
+
+</body>
+</html>
